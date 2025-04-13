@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import './App.css';
-import Task from './tasks/Task';
 
 import taskdata from './tasks/taskdata.json';
 import TaskForm from './tasks/TaskForm';
@@ -21,15 +20,32 @@ function App() {
     scheduledDate: '', // optional
   });
 
+  const [hideCompleted, setHideCompleted] = useState(false);
   const [showTop3, setShowTop3] = useState(false);
-  const displayedTasks = showTop3
-    ? tasks.filter((t) => t.isTop3Today)
-    : tasks;
+  const displayedTasks = tasks.filter(task => {
+    const isCompleted = task.status === 'Done';
+  
+    if (showTop3) {
+      // Only show Top 3 tasks that are not yet completed
+      return task.isTop3Today && !isCompleted;
+    }
+  
+    // Otherwise apply hideCompleted toggle normally
+    return hideCompleted ? !isCompleted : true;
+  });
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <div className="App">
+        <FormControlLabel 
+          control={<Switch
+           checked={hideCompleted}
+           onChange={() => setHideCompleted(prev => !prev)}
+           />
+          }
+          label="Hide Completed Tasks"
+          />
       <FormControlLabel
         control={<Switch checked={showTop3} onChange={() => setShowTop3(!showTop3)} />}
       label="show Top 3 Only"

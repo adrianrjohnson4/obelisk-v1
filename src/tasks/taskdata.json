@@ -9,7 +9,8 @@
       "scheduledDate": "2025-04-13T09:00:00",
       "isTop3Today": true,
       "createdAt": "2025-04-12T21:00:00",
-      "completedAt": null
+      "completedAt": null,
+      "deferredUntil": null
     },
     {
       "id": 2,
@@ -21,7 +22,8 @@
       "scheduledDate": "2025-04-13T13:00:00",
       "isTop3Today": true,
       "createdAt": "2025-04-12T22:00:00",
-      "completedAt": null
+      "completedAt": null,
+      "deferredUntil": null
     },
     {
       "id": 3,
@@ -33,7 +35,8 @@
       "scheduledDate": "2025-04-13T15:30:00",
       "isTop3Today": false,
       "createdAt": "2025-04-12T23:00:00",
-      "completedAt": null
+      "completedAt": null,
+      "deferredUntil": null
     }
   ]
   

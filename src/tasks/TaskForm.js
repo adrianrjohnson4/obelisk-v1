@@ -27,6 +27,7 @@ const TaskForm = ({ newTask, setNewTask, setTasks }) => {
       status: 'Todo',
       createdAt: new Date().toISOString(),
       completedAt: null,
+      deferredUntil: null,
     };
 
     setTasks((prev) => [...prev, taskToAdd]);
