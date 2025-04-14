@@ -1,14 +1,33 @@
 import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
-import { Chip, IconButton, MenuItem, Select, Dialog, DialogTitle, DialogContent, DialogContentText,
-    DialogActions, Button } from '@mui/material';
+import {
+    Chip, IconButton, MenuItem, Select, Dialog, DialogTitle, DialogContent, DialogContentText,
+    DialogActions, Button
+} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const paginationModel = { page: 0, pageSize: 5 };
 
 const TaskTable = ({ tasks, setTasks }) => {
+
+    
+
+
+    const [deleteId, setDeleteId] = useState(null);
+    const [openConfirm, setOpenConfirm] = useState(false)
+
+    const handleDeleteClick = (id) => {
+        setDeleteId(id);
+        setOpenConfirm(true);
+    };
+
+    const handleConfirmDelete = () => {
+        setTasks((prev) => prev.filter((task) => task.id !== deleteId));
+        setOpenConfirm(false);
+        setDeleteId(null);
+    };
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
@@ -91,55 +110,39 @@ const TaskTable = ({ tasks, setTasks }) => {
         }
     ];
 
- 
-    const [deleteId, setDeleteId] = useState(null);
-    const [openConfirm, setOpenConfirm] = useState(false)
-
-    const handleDeleteClick = (id) => {
-        setDeleteId(id);
-        setOpenConfirm(true);
-    };
-
-    const handleConfirmDelete = () => {
-        setTasks((prev) => prev.filter((task) => task.id !== deleteId));
-        setOpenConfirm(false);
-        setDeleteId(null);
-    };
-
     return (
         <div>
-           <Paper sx={{ height: 400, width: '100%' }}>
-            <DataGrid
-                rows={tasks}
-                columns={columns}
-                initialState={{ pagination: { paginationModel } }}
-                pageSizeOptions={[5, 10]}
-                checkboxSelection
-                sx={{ border: 0 }}
-                processRowUpdate={(newRow) => {
-                    setTasks((prev) =>
-                        prev.map((task) =>
-                            task.id === newRow.id ? newRow : task
-                        )
-                    );
-                    return newRow;
-                }}
-            />
-        </Paper> 
-        <Dialog open={openConfirm} onClose={() => setOpenConfirm(false)}>
-            <DialogTitle>Delete Task</DialogTitle>
-            <DialogContent>
-                <DialogContentText>
-                    Are you sure you want to permanently delete this task? This action cannot be undone.
-                </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={() => setOpenConfirm(false)}>Cancel</Button>
-                <Button onClick={handleConfirmDelete} color="error"></Button>
-            </DialogActions>
-        </Dialog>
+            <Paper sx={{ height: 400, width: '100%' }}>
+                <DataGrid
+                    rows={tasks}
+                    columns={columns}
+                    initialState={{ pagination: { paginationModel } }}
+                    pageSizeOptions={[5, 10]}
+                    sx={{ border: 0 }}
+                    processRowUpdate={(newRow) => {
+                        setTasks((prev) =>
+                            prev.map((task) =>
+                                task.id === newRow.id ? newRow : task
+                            )
+                        );
+                        return newRow;
+                    }}
+                />
+            </Paper>
+            <Dialog open={openConfirm} onClose={() => setOpenConfirm(false)}>
+                <DialogTitle>Delete Task</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to permanently delete this task? This action cannot be undone.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenConfirm(false)}>Cancel</Button>
+                    <Button onClick={handleConfirmDelete} color="error">Delete</Button>
+                </DialogActions>
+            </Dialog>
         </div>
-        
+
     )
 }
 

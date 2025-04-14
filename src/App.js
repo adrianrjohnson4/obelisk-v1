@@ -7,6 +7,7 @@ import taskdata from './tasks/taskdata.json';
 import TaskForm from './tasks/TaskForm';
 import TaskTable from './tasks/TaskTable';
 import { FormControlLabel, Switch } from '@mui/material';
+import CalendarView from './tasks/CalendarView';
 
 
 function App() {
@@ -24,12 +25,12 @@ function App() {
   const [showTop3, setShowTop3] = useState(false);
   const displayedTasks = tasks.filter(task => {
     const isCompleted = task.status === 'Done';
-  
+
     if (showTop3) {
       // Only show Top 3 tasks that are not yet completed
       return task.isTop3Today && !isCompleted;
     }
-  
+
     // Otherwise apply hideCompleted toggle normally
     return hideCompleted ? !isCompleted : true;
   });
@@ -38,20 +39,23 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <div className="App">
-        <FormControlLabel 
+        <FormControlLabel
           control={<Switch
-           checked={hideCompleted}
-           onChange={() => setHideCompleted(prev => !prev)}
-           />
+            checked={hideCompleted}
+            onChange={() => setHideCompleted(prev => !prev)}
+          />
           }
           label="Hide Completed Tasks"
-          />
-      <FormControlLabel
-        control={<Switch checked={showTop3} onChange={() => setShowTop3(!showTop3)} />}
-      label="show Top 3 Only"
-      />
-      <TaskTable tasks={displayedTasks} setTasks={setTasks} />
-      <TaskForm newTask={newTask} setNewTask={setNewTask} setTasks={setTasks} />
+        />
+        <FormControlLabel
+          control={<Switch checked={showTop3} onChange={() => setShowTop3(!showTop3)} />}
+          label="show Top 3 Only"
+        />
+        <TaskTable tasks={displayedTasks} setTasks={setTasks} />
+        <TaskForm newTask={newTask} setNewTask={setNewTask} setTasks={setTasks} />
+        <div style={{ height: '80vh', width: '100%', padding: '1rem' }}>
+          <CalendarView tasks={tasks} />
+        </div>
       </div>
     </ThemeProvider>
   );
