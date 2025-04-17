@@ -1,13 +1,20 @@
+import { matchGoal } from "../goals/goalUtils";
+
 let tasks = [];
 
 export const addTask = (text) => {
+    const goal = matchGoal(text); // returns goal or undefined
+
     const task = {
         id: crypto.randomUUID(),
         text,
         status: 'todo',
         priority: 3,
+        weight: goal ? 5 : 2,
+        goalId: goal?.id || null,
         createdAt: new Date(),
     };
+    
     tasks.push(task);
     return task;
 }

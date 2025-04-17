@@ -17,7 +17,7 @@ export const Home = () => {
     };
 
     return (
-        <div style={{ background: '#121212', color: '#eee', padding: '2rem', fontFamily: 'sans-serif' }}>
+        <div>
             <h1>Obelisk</h1>
             <h2>Current Mode: {systemState.mode}</h2>
 
