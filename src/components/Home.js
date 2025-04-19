@@ -3,10 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { useSystemState } from './SystemContext';
 import { runWithProtocol } from './protocols';
 import { getWhyLogs } from './logs';
+import { useAttentionPulse } from './useAttentionPulse';
 
 export const Home = () => {
     const { systemState, setSystemState } = useSystemState();
     const logs = getWhyLogs();
+    const pulse = useAttentionPulse();
+
 
     const testAgent = () => {
         runWithProtocol({
@@ -42,6 +45,13 @@ export const Home = () => {
             <ul>{systemState.topGoals.map((goal, i) => <li key={i}>{goal}</li>)}</ul>
 
             <button onClick={testAgent}>Run Protocol Agent</button>
+
+            <div>
+                <h2>🧠 What Wants Your Attention</h2>
+                <ul>
+                    {pulse.map((p, i) => <li key={i}>{p.label}</li>)}
+                </ul>
+            </div>
 
             <h3>Why Logs</h3>
             <ul>

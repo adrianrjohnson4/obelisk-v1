@@ -4,6 +4,7 @@ import { Home } from './components/Home';
 import { FocusSystem } from './focus/FocusSystem';
 import { FlowSystem } from './flow/FlowSystem';
 import { GoalEngine } from './goals/GoalEngine';
+import { ReviewSystem } from './components/ReviewSystem';
 
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
         <GoalEngine />
         
         <FocusSystem />
+
+        <ReviewSystem />
       </div>
     </SystemProvider>
   );
