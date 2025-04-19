@@ -6,6 +6,8 @@ const defaultState = {
     mode: 'focus',
     topGoals: ['Launch V1', 'Track Attention', 'Maintain Sovereignty'],
     logs: [],
+    tasks: [],
+    goals: [],
 };
 
 export const SystemProvider = ({ children }) => {

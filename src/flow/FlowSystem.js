@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addTask } from '../focus/taskUtils';
+import { useObelisk } from '../../src/components/useObelisk';
 import { runWithProtocol } from '../components/protocols';
 
 const intentionLog = [];
@@ -12,6 +12,8 @@ export const FlowSystem = () => {
     const [morningInput, setMorningInput] = useState('');
     const [top3Input, setTop3Input] = useState(['', '', '']);
     const [eveningInput, setEveningInput] = useState('');
+
+     const { addTask } = useObelisk();
 
     const handleMorningSubmit = () => {
         top3Input.forEach(text => {
@@ -43,7 +45,7 @@ export const FlowSystem = () => {
     };
 
     const isMorning = hours < 12;
-    const isEvening = hours >= 17;
+    const isEvening = hours >= 16;
 
     return (
         <div style={{ padding: '1rem' }}>

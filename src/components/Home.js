@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useSystemState } from './SystemContext';
 import { runWithProtocol } from './protocols';
@@ -15,6 +15,13 @@ export const Home = () => {
             action: () => Promise.resolve('Task scheduled at 3pm'),
         });
     };
+
+    const [_, forceUpdate] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => forceUpdate(x => x + 1), 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div>

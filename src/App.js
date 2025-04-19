@@ -12,11 +12,11 @@ function App() {
     <SystemProvider>
       <div style={{ background: '#121212', color: '#eee', padding: '2rem', fontFamily: 'sans-serif', height: '100vh' }}>
         <Home />
-        <divider style={{ backgroundColor: 'white'}} />
+        
         <FlowSystem />
-        <divider />
+        
         <GoalEngine />
-        <divider />
+        
         <FocusSystem />
       </div>
     </SystemProvider>
