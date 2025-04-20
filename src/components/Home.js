@@ -30,7 +30,6 @@ export const Home = () => {
 
     return (
         <div>
-            <h1>Obelisk</h1>
             <h2>Current Mode: {systemState.mode}</h2>
 
             <select

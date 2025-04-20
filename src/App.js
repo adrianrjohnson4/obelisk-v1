@@ -6,22 +6,14 @@ import { FlowSystem } from './flow/FlowSystem';
 import { GoalEngine } from './goals/GoalEngine';
 import { ReviewSystem } from './components/ReviewSystem';
 
+import { AppLayout } from './components/AppLayout';
+
 
 function App() {
 
   return (
     <SystemProvider>
-      <div style={{ background: '#121212', color: '#eee', padding: '2rem', fontFamily: 'sans-serif', height: '100%' }}>
-        <Home />
-        
-        <FlowSystem />
-        
-        <GoalEngine />
-        
-        <FocusSystem />
-
-        <ReviewSystem />
-      </div>
+      <AppLayout />
     </SystemProvider>
   );
 }
