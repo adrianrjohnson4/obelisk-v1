@@ -30,6 +30,7 @@ export const Home = () => {
 
     return (
         <div>
+
             <h2>Current Mode: {systemState.mode}</h2>
 
             <select

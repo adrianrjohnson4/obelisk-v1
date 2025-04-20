@@ -1,4 +1,4 @@
-import { useObelisk } from "./useObelisk";
+import { useObelisk } from '../firebase/useObeliskFirebase';
 
 export const useAttentionPulse = () => {
     const { tasks, goals } = useObelisk();

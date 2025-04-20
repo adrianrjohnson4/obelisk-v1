@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useObelisk } from '../../src/components/useObelisk';
-import { runWithProtocol } from '../components/protocols';
+import { useObelisk } from '../firebase/useObeliskFirebase';
+import { runWithProtocol } from '../firebase/runWithProtocolFirebase';
 
 const intentionLog = [];
 const reflectionLog = [];

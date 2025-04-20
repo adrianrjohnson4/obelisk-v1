@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useObelisk } from './useObelisk';
+import { useObelisk } from '../firebase/useObeliskFirebase';
 
 const shapeLabels = ['Input', 'Filter', 'Transform', 'Store', 'Output', 'Loop'];
 const energyLabels = ['Clear', 'Confused', 'Avoided', 'Forced'];

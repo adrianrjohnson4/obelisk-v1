@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useObelisk } from '../components/useObelisk';
+import { useObelisk } from '../firebase/useObeliskFirebase';
 
 export const GoalEngine = () => {
   const { tasks, goals, addGoal } = useObelisk();

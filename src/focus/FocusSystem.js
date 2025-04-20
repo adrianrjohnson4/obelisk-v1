@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useObelisk } from '../components/useObelisk';
-import { runWithProtocol } from '../components/protocols';
-import { logCompletedTask } from '../components/completedLog';
+import { useObelisk } from '../firebase/useObeliskFirebase';
+import { runWithProtocol } from '../firebase/runWithProtocolFirebase';
+import { logCompletedTask } from '../firebase/logCompletedTaskFirebase';
 
 const shapeOptions = ['Input', 'Filter', 'Transform', 'Store', 'Output', 'Loop'];
 const energyOptions = ['Clear', 'Confused', 'Avoided', 'Forced'];
