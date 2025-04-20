@@ -55,7 +55,7 @@ export const FlowSystem = () => {
                 <div>
                     <h3>🌅 Morning Intention</h3>
                     <textarea
-                        placeholder='What is my inention today?'
+                        placeholder='What is my intention today?'
                         value={morningInput}
                         onChange={(e) => setMorningInput(e.target.value)}
                     />

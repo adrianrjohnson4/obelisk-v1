@@ -4,11 +4,13 @@ import { useSystemState } from './SystemContext';
 import { runWithProtocol } from './protocols';
 import { getWhyLogs } from './logs';
 import { useAttentionPulse } from './useAttentionPulse';
+import { getCompletedLog } from './completedLog';
 
 export const Home = () => {
     const { systemState, setSystemState } = useSystemState();
     const logs = getWhyLogs();
     const pulse = useAttentionPulse();
+    const completedLogs = getCompletedLog();
 
 
     const testAgent = () => {
@@ -61,6 +63,16 @@ export const Home = () => {
                     </li>
                 ))}
             </ul>
+
+            <h3>Completed Log</h3>
+            <ul>
+                {completedLogs.map((log, i) => (
+                    <li key={i}>
+                        {`✅ ${log.text} - Shape: ${log.shape} | Energy: ${log.energy} | Reflection: ${log.reflection} @ ${log.completedAt.toLocaleTimeString()}`}
+                    </li>
+                ))}
+            </ul>
+            <button onClick={() => console.log("Completed Logs: ", completedLogs)}>Test Completed Logs</button>
         </div>
     );
 };
