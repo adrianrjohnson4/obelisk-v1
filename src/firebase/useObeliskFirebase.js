@@ -4,7 +4,7 @@ import {
     collection,
     addDoc,
     updateDoc,
-    getDocs,
+    getDoc,
     doc,
     onSnapshot,
     serverTimestamp
@@ -44,6 +44,10 @@ import {
     };
 
     const addTask = async (text, shape = '', energy = '') => {
+        if (!text || typeof text !== 'string' || !text.trim()) {
+            console.warn("🛑 Cannot add task: invalid text input", text)
+        }
+
         const matchedGoal = goals.find(g => text.toLowerCase().includes(g.text.toLowerCase()));
         const priority = 3;
         const weight = matchedGoal ? 5 : 2;
@@ -61,16 +65,32 @@ import {
           createdAt: serverTimestamp(),
         };
         
+        console.log({ task })
         await addDoc(collection(db, 'tasks'), task);
     };
 
-    const completeTask = async (taskId) => {
+   const completeTask = async (taskId) => {
+        if (!taskId || typeof taskId !== 'string') {
+          console.warn("🛑 Invalid task ID:", taskId);
+          return;
+        }
+      
         const ref = doc(db, 'tasks', taskId);
+        const snapshot = await getDoc(ref);
+      
+        if (!snapshot.exists()) {
+          console.warn("⚠️ Task does not exist in Firestore:", taskId);
+          return;
+        }
+      
         await updateDoc(ref, {
-            status: 'done',
-            completedAt: serverTimestamp()
+          status: 'done',
+          completedAt: serverTimestamp()
         });
-    };
+      
+        console.log("✅ Task marked complete:", taskId);
+      };
+      
 
     return {
         tasks,
