@@ -4,7 +4,6 @@ import { FocusSystem } from '../focus/FocusSystem';
 import { GoalEngine } from '../goals/GoalEngine';
 import { FlowSystem } from '../flow/FlowSystem';
 import { ReviewSystem } from './ReviewSystem';
-import { useAttentionPulse } from './useAttentionPulse';
 import { Home } from './Home';
 
 export const AppLayout = () => {
